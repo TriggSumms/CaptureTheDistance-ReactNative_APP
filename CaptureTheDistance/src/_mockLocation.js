@@ -1,9 +1,10 @@
 import * as Location from 'expo-location';
 
 
-//TEST FILE TO INPUT USERS location progression (FAUX)....testing purpose (not for build)
+//TEST FILE TO INPUT USER location progression (FAUX)....testing purpose (not for build)
 
 const tenMetersWithDegrees = 0.0001;
+ 
 
 const getLocation = increment => {
 
