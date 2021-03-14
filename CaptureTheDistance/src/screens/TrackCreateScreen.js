@@ -1,7 +1,7 @@
 //import '../_mockLocation';
 import React, { useContext, useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native-elements';
+import { View, StyleSheet,  } from 'react-native';
+import { Text, Spacer } from 'react-native-elements';
 import { SafeAreaView, withNavigationFocus } from 'react-navigation';
 //import { withNavigationFocus } from 'react-navigation';
 //import { requestPermissionsAsync} from 'expo-location';
@@ -12,6 +12,14 @@ import { Context as LocationContext } from '../context/LocationContext';
 import useLocation from '../hooks/useLocation';
 import TrackForm from '../components/TrackForm';
 import { FontAwesome } from '@expo/vector-icons';
+import {
+    useFonts,
+    Nunito_400Regular,
+    Lato_400Regular,
+    Inter_900Black,
+    Cinzel_700Bold
+} from '@expo-google-fonts/dev';
+import { AppLoading } from 'expo';
 
 
 //Is focused is the props object imported from RN's withNavigationFocus....it allows for an event listener to tell if the screen is focused....through a [bit]
@@ -32,11 +40,22 @@ const TrackCreateScreen = ({ isFocused }) => {
     );
     const [err] = useLocation(isFocused || recording, callback);
 
+
+    let [fontsLoaded, error] = useFonts({
+        Cinzel_700Bold
+    })
+
+    if (!fontsLoaded) {
+        return <AppLoading />
+    }
+
+
     return (
-         <SafeAreaView forceInset={{ top: 'always' }}>
+         <SafeAreaView forceInset={{ top: 'always' }} style={styles.container}>
             {/* <View> */}
-            <Text h2>Create a Quick lil Track</Text>
-            <Map />
+            <Text style={styles.TrackHeader} >Create a Quick lil Track</Text>
+            
+            <Map style={styles.map}  />
             {err ? <Text>Please enable location services</Text> : null}
             <TrackForm />
             {/* </View> */}
@@ -71,6 +90,27 @@ TrackCreateScreen.navigationOptions = {
     tabBarIcon: <FontAwesome name="plus" size={20} />
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        marginBottom: 100,
+    },
+    TrackHeader: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Cinzel_700Bold',
+        fontSize: 30,
+        marginBottom: 25,
+        marginLeft: 25
+    },
+    map: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    },
+
+
+});
 
 export default withNavigationFocus(TrackCreateScreen);

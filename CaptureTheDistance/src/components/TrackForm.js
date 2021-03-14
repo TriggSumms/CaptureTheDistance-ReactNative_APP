@@ -30,7 +30,7 @@ console.log("ChangeStamp", changeStamp)
 // //timeStampz === changeStamp
 // let date = moment().format('MMMM Do YYYY, h:mm a')
 // console.log("date", date)
-let changeStamp= date.parse(Date.now());
+//let changeStamp= date.parse(Date.now());
 //const date= moment().format('MMMM Do YYYY, h:mm a')
 
 

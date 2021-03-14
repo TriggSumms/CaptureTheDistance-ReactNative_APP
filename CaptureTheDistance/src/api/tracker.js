@@ -5,7 +5,7 @@ import { AsyncStorage } from 'react-native';
 
 let url;
 if (__DEV__) {
-  url = 'http://4beb182964f8.ngrok.io';
+  url = 'http://3d62836ea571.ngrok.io';
 } else {
  // url = 'https://POSSIBLE LINKAGE TO TRIGG.herokuapp.com';
 }
