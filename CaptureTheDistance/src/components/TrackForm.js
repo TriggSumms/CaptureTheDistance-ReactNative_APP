@@ -14,10 +14,6 @@ const TrackForm = () => {
     stopRecording,
     changeName,
     changeStamp
-    
-    
-    
-
   } = useContext(LocationContext);
 
   const [saveTrack] = useSaveTrack();
@@ -45,14 +41,15 @@ console.log("ChangeStamp", changeStamp)
           onChangeText={changeName}
           placeholder="Enter name"
         />
-          {/* <Input
-          // value={timeStampz}
-          // onChangeText={ moment(changeStamp).format('MMMM Do YYYY, h:mm a')}
-          // type="hidden"
+         <Input
+          value={timeStampz}
+          //  onChangeText={changeStamp}
+           onChangeText={ changeStamp=> onChangeText(changeStamp(Date.now()))}
+           type="hidden"
 
 
           
-        /> */}
+        /> 
        <Text>{}</Text> 
       </Spacer>
       <Spacer>

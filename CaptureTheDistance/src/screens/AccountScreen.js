@@ -1,44 +1,57 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { View, StyleSheet, Text, Image} from 'react-native';
+import { Button, Icon,  } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 import { FontAwesome } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+
+
+
 
 const AccountScreen = () => {
   const { signout } = useContext(AuthContext);
 
+
+
+  //SafeAreaView is a react native element that makes sure your content doesnt render inside/overlay the status bar of youer device 
   return (
-    //SafeAreaView is a react native element that makes sure your content doesnt render inside/overlay the status bar of youer device 
+    <>
+    
     <SafeAreaView forceInset={{ top: 'always' }} style={styles.container}>
       <View >
-<Text style={{ fontSize: 25 }}>Account for {}...</Text>
-     
-      <Spacer>
-    
-        <Button
-          icon={
-            <Icon
-             title='icon'
-              name="arrow-right"
-              type="outline"
-              size={15}
-              color="white"
-              backgroundColor= "#FFBB34"
-              borderColor= "#555555"
-              borderWidth= {50}
-              borderRadius= {50}
-               onPress={signout}
-            />
-          }
-          iconRight
-          title="Sign Out"
-        />
+        <Text style={{ fontSize: 25 }}>Account for { } ....
 
-      </Spacer>
-</View>
+      <Image style={styles.tinyLogo} source={{
+                        uri: 'https://img.icons8.com/ios-filled/50/000000/user-male--v2.png'}} />
+        </Text>  
+        <Spacer>
+          <Button
+            iconRight
+            title="Sign Out"
+            icon={
+              <Icon
+                title='icon'
+                name="arrow-right"
+                type="outline"
+                size={15}
+                color="white"
+                onPress={signout}
+              />
+            }
+            ViewComponent={LinearGradient} // Don't forget this!
+            linearGradientProps={{
+              colors: ['blue', 'green', 'yellow'],
+              start: { x: 0, y: 0.5 },
+              end: { x: 1, y: 0.5 },
+            }}
+          />
+
+        </Spacer>
+      </View>
     </SafeAreaView>
+    </>
   );
 };
 
@@ -52,8 +65,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginBottom: 100
-    
-  }
+
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+},
 });
 
 export default AccountScreen;
